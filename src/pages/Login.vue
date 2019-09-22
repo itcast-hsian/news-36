@@ -71,12 +71,17 @@ export default {
     handleSubmit(){
 
       this.$axios({
-        url: "http://localhost:3000/login",
+        url: "/login",
         method: "POST",  // method相当于type
         data: this.form
         // .then的回调函数相当于success
       }).then( res => {
-        console.log(res)
+        const {message} = res.data;
+
+        if(message === "登录成功"){
+          // 跳转到首页
+          this.$router.push("/")
+        }
       });
 
     }
