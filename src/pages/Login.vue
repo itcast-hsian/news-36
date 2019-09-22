@@ -11,7 +11,7 @@
       </div>
 
       <!-- 用户名密码输入框 -->
-      <div >
+      <div class="inputs">
 
         <!-- 输入框组件 -->
         <AuthInput
@@ -32,14 +32,16 @@
         ></AuthInput>
       </div>
 
-      <button @click="handleSubmit">登录按钮</button>
+      <!-- <button @click="handleSubmit">登录按钮</button> -->
+      <AuthButton text="登录" @click="handleSubmit"/>
   </div>
 </template>
 
 <script>
 
-//  导入输入框组件
+//  导入组件
 import AuthInput from "@/components/AuthInput";
+import AuthButton from "@/components/AuthButton";
 
 export default {
   data(){
@@ -53,7 +55,8 @@ export default {
   },
   // 注册组件
   components: {
-    AuthInput
+    AuthInput,
+    AuthButton
   },
 
   methods: {
@@ -91,6 +94,12 @@ export default {
       display: block;
       font-size: 126 / 360 * 100vw;
       color: #d81e06;
+    }
+  }
+
+  .inputs{
+    input{
+      margin-bottom: 20px;
     }
   }
 </style>
