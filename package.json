@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config config/webpack.pro.js",
-    "dev": "webpack-dev-server --config config/webpack.dev.js --open"
+    "dev": "webpack-dev-server --config config/webpack.dev.js"
   },
   "author": "",
   "license": "ISC",

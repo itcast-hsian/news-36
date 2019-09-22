@@ -6,7 +6,11 @@
 
 <script>
 export default {
-
+  data(){
+    return {
+      list: []
+    }
+  }
 }
 </script>
 
