@@ -23,6 +23,16 @@
         err_message="手机号码格式不正确"
         ></AuthInput>
 
+        <!-- 昵称 -->
+        <AuthInput
+        placeholder="昵称"
+        v-model="form.nickname"
+
+        :rule="/^[0-9a-zA-Z\u4e00-\u9fa5]{2,6}$/"
+        err_message="昵称格式不正确"
+        ></AuthInput>
+
+        <!-- 密码 -->
         <AuthInput
         placeholder="密码"
         type="password"
@@ -34,12 +44,12 @@
       </div>
 
       <p class="tips">
-        没有账号？ 
-        <router-link to="/register">去注册</router-link>
+        有账号？ 
+        <router-link to="/login">去登录</router-link>
       </p>
 
       <!-- <button @click="handleSubmit">登录按钮</button> -->
-      <AuthButton text="登录" @click="handleSubmit"/>
+      <AuthButton text="注册" @click="handleSubmit"/>
   </div>
 </template>
 
@@ -57,7 +67,8 @@ export default {
       // 发送给后台的数据
       form: {
         username: "",
-        password: ""
+        password: "",
+        nickname: ""
       },
     }
   },
@@ -77,16 +88,16 @@ export default {
     handleSubmit(){
 
       this.$axios({
-        url: "/login",
+        url: "/register",
         method: "POST",  // method相当于type
         data: this.form
         // .then的回调函数相当于success
       }).then( res => {
         const {message} = res.data;
 
-        if(message === "登录成功"){
+        if(message === "注册成功"){
           // 跳转到首页
-          this.$router.push("/")
+          this.$router.push("/login");
         }
       });
 
