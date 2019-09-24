@@ -1,26 +1,35 @@
 <template>
   <div>
-      <div class="profile">
-          <img src="http://img1.imgtn.bdimg.com/it/u=2357912857,682090914&fm=26&gp=0.jpg" alt="">
+        <div class="profile">
+            <img src="http://img1.imgtn.bdimg.com/it/u=2357912857,682090914&fm=26&gp=0.jpg" alt="">
 
-          <div class="profile-center">
-              <div class="name">
-                  <span class="iconfont iconxingbienan"></span>
-                  火星网友
-              </div>
-              <div class="time">
-                  2019-9-24
-              </div>
-          </div>
+            <div class="profile-center">
+                <div class="name">
+                    <span class="iconfont iconxingbienan"></span>
+                    火星网友
+                </div>
+                <div class="time">
+                    2019-9-24
+                </div>
+            </div>
 
-          <span class="iconfont iconjiantou1"></span>
-      </div>
+            <span class="iconfont iconjiantou1"></span>
+        </div>
+
+        <!-- 调用条形组件 -->
+        <CellBar/>
   </div>
 </template>
 
 <script>
-export default {
 
+// 导入条形组件
+import CellBar from "@/components/CellBar"
+
+export default {
+    components: {
+        CellBar
+    }
 }
 </script>
 
