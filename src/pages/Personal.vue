@@ -56,14 +56,16 @@ export default {
         }).then(res => {
             const {data} = res.data;
 
-            // 保存到data
-            this.profile = data;
+            if(data){
+                // 保存到data
+                this.profile = data;
 
-            // 如果用户有头像
-            if(data.head_img){
-                this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
-            }else{
-                 this.profile.head_img = "./static/default_green.jpg";
+                // 如果用户有头像
+                if(data.head_img){
+                    this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
+                }else{
+                    this.profile.head_img = "./static/default_green.jpg";
+                }
             }
         })
     }
