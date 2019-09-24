@@ -106,7 +106,7 @@ module.exports = {
         new VueLoaderPlugin(),   // vue加载器插件
 
         new CopyPlugin([
-            { from: 'static', to: 'static' },
+            { from: 'static', to: 'static' }, // 把static复制到dist下的static
         ]),
     ]
 

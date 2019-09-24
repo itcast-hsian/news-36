@@ -60,7 +60,6 @@ router.beforeEach( (to, from, next) => {
         // 所有人都可以访问的页面正常浏览
         next();
     }
-
 })
 
 // axios的统一的拦截器，拦截响应
