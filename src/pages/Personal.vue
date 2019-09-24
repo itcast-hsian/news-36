@@ -2,7 +2,7 @@
   <div>
         <div class="profile">
             <!-- $axios.defaults.baseURL读取axios的服务器路径 -->
-            <img :src="$axios.defaults.baseURL + profile.head_img" alt="">
+            <img :src="profile.head_img" alt="">
 
             <div class="profile-center">
                 <div class="name">
@@ -58,6 +58,13 @@ export default {
 
             // 保存到data
             this.profile = data;
+
+            // 如果用户有头像
+            if(data.head_img){
+                this.profile.head_img = this.$axios.defaults.baseURL + profile.head_img;
+            }else{
+                 this.profile.head_img = "./static/default_green.jpg";
+            }
         })
     }
 }
