@@ -13,6 +13,7 @@ import axios from "axios";
 import App from "@/App";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import Personal from "@/pages/Personal";
 
 // 在.vue文件中要使用router-link或者router-view.需要注册下插件
 Vue.use(VueRouter);
@@ -26,7 +27,8 @@ axios.defaults.baseURL = "http://localhost:3000";
 // 路由：2.创建路由配置
 const routes = [
     { path: "/login", component: Login},
-    { path: "/register", component: Register}
+    { path: "/register", component: Register},
+    { path: "/personal", component: Personal}
 ]
 
 // 路由：3.创建对象
