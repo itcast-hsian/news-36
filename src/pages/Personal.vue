@@ -20,7 +20,9 @@
         </router-link>
 
         <!-- 调用条形组件 -->
-        <CellBar label="我的关注" text="关注的用户"/>
+        <router-link to="/user_follow">
+            <CellBar label="我的关注" text="关注的用户"/>
+        </router-link>
 
         <CellBar label="我的跟帖" text="跟帖/回复"/>
 

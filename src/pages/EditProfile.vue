@@ -78,7 +78,7 @@ export default {
       // 显示性别的弹窗
       show3: false,
       
-
+      // 性别缓存
       genderCache: `0`,
     };
   },
