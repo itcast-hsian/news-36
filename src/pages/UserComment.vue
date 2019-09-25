@@ -20,13 +20,13 @@
           <div class="content">
               不知道
           </div>
-          
-          <div class="article-link">
-            <router-link to="#">
+        
+          <router-link to="#" class="article-link">  
+            <p>
                 原文：今天买什么码？今天买什么码？今天买什么码？今天买什么码？今天买什么码？
-            </router-link>
+            </p>
             <span class="iconfont iconjiantou1"></span>
-          </div>
+          </router-link>
       </div>
   </div>
 </template>
@@ -41,6 +41,46 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="less">
+.comment-item{
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.8;
+    border-bottom:1px #ccc solid;
 
+    .time{
+        font-size: 12px;
+        color:#999;
+        margin-bottom: 5px;
+    }
+
+    .parent{
+        background:#eee;
+        padding: 10px;
+        margin-bottom: 5px;
+
+        .parent-title{
+            font-size: 12px;
+            color:#999;
+        }
+    }
+
+    .content{
+        margin-bottom: 5px;
+    }
+
+    .article-link{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color:#999;
+
+        p{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
 </style>
