@@ -20,9 +20,10 @@
         v-model="show1"
         title="编辑昵称"
         show-cancel-button
+        @confirm="handlNickname"
         >
         <!-- value读取昵称 -->
-        <van-field :value="profile.nickname" placeholder="请输入用户名" />
+        <van-field :value="profile.nickname" placeholder="请输入用户名" ref="nickname"/>
     </van-dialog>
 
     <CellBar label="密码" :text="profile.password" type="password" />
@@ -94,6 +95,36 @@ export default {
                     this.$toast.success(message);
                 }
             })
+        })
+    },
+
+    // 编辑昵称
+    handlNickname(){
+        // 拿到input输入框的值
+        const value = this.$refs.nickname.$refs.input.value;
+
+        // 提交到编辑资料的接口
+        this.$axios({
+            url: `/user_update/` + localStorage.getItem("user_id"),
+            method: 'POST',
+            // 添加头信息
+            headers: {
+                Authorization: localStorage.getItem("token")
+            },
+            data: {
+                nickname: value
+            }
+        }).then(res => {
+            const {message} = res.data;
+
+            // 成功的弹窗提示
+            if(message === '修改成功'){
+                
+                // 替换profile的昵称
+                this.profile.nickname = value;
+
+                this.$toast.success(message);
+            }
         })
     }
   },
