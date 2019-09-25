@@ -26,7 +26,17 @@
         <van-field :value="profile.nickname" placeholder="请输入用户名" ref="nickname"/>
     </van-dialog>
 
-    <CellBar label="密码" :text="profile.password" type="password" />
+    <CellBar label="密码" :text="profile.password" type="password" @click="show2 = !show2"/>
+    <!-- 密码编辑输入框 -->
+    <van-dialog
+        v-model="show2"
+        title="编辑密码"
+        show-cancel-button
+        @confirm="handlPassword"
+        >
+        <!-- value读取昵称 -->
+        <van-field :value="profile.password" placeholder="请输入密码" ref="password"/>
+    </van-dialog>
 
     <CellBar label="性别" :text="profile.gender === 1 ? '男' : '女'" />
   </div>
@@ -44,6 +54,8 @@ export default {
       profile: {},
       // 昵称弹窗
       show1: false,
+      // 密码弹窗
+      show2: false,
     };
   },
 
@@ -53,6 +65,36 @@ export default {
   },
 
   methods: {
+
+    // 请求编辑资料的接口
+    // data要提交给接口的数据
+    editProfile(data, callback){
+        if(!data) return;
+
+        this.$axios({
+            url: `/user_update/` + localStorage.getItem("user_id"),
+            method: 'POST',
+            // 添加头信息
+            headers: {
+                Authorization: localStorage.getItem("token")
+            },
+            data
+        }).then(res => {
+            const {message} = res.data;
+
+            // 成功的弹窗提示
+            if(message === '修改成功'){
+                // 传入的回调函数
+                // 等于callback && callback();
+                if(callback){
+                    callback();
+                }
+
+                this.$toast.success(message);
+            }
+        })
+    },
+
     // 选择完图片之后的回调函数,file返回选中的图片
     afterRead(file) {
 
@@ -77,24 +119,7 @@ export default {
             this.profile.head_img = this.$axios.defaults.baseURL + data.url;
 
             // 把头像url上传到用户资料
-            this.$axios({
-                url: `/user_update/` + localStorage.getItem("user_id"),
-                method: 'POST',
-                // 添加头信息
-                headers: {
-                    Authorization: localStorage.getItem("token")
-                },
-                data: {
-                    head_img: data.url
-                }
-            }).then(res => {
-                const {message} = res.data;
-
-                // 成功的弹窗提示
-                if(message === '修改成功'){
-                    this.$toast.success(message);
-                }
-            })
+            this.editProfile({ head_img: data.url});
         })
     },
 
@@ -104,28 +129,19 @@ export default {
         const value = this.$refs.nickname.$refs.input.value;
 
         // 提交到编辑资料的接口
-        this.$axios({
-            url: `/user_update/` + localStorage.getItem("user_id"),
-            method: 'POST',
-            // 添加头信息
-            headers: {
-                Authorization: localStorage.getItem("token")
-            },
-            data: {
-                nickname: value
-            }
-        }).then(res => {
-            const {message} = res.data;
+        this.editProfile({ nickname: value}, () => {
+            this.profile.nickname = value;
+        });
+    },
+    // 编辑昵称
+    handlPassword(){
+        // 拿到input输入框的值
+        const value = this.$refs.password.$refs.input.value;
 
-            // 成功的弹窗提示
-            if(message === '修改成功'){
-                
-                // 替换profile的昵称
-                this.profile.nickname = value;
-
-                this.$toast.success(message);
-            }
-        })
+        // 提交到编辑资料的接口
+        this.editProfile({ password: value}, () => {
+            this.profile.password = value;
+        });
     }
   },
 
