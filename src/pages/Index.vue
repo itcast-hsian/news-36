@@ -15,12 +15,31 @@
           </router-link>
       </div>
 
+    <!-- 栏目列表 -->
+    <!-- v-model: 默认选中的标签栏 -->
+    <!-- sticky: 配置粘性布局 -->
+    <!-- swipeable: 滑动切换 -->
+    <van-tabs v-model="active" sticky swipeable>
+        <!-- title: 要显示的内容 -->
+        <van-tab 
+        v-for="index in 8" 
+        :key="index"
+        :title="'标签 ' + index"
+        >
+            <p v-for="index in 100">内容 {{ index }} </p>
+        </van-tab>
+    </van-tabs>
+
   </div>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return {
+            active: 1
+        }
+    }
 }
 </script>
 
