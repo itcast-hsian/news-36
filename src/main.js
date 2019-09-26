@@ -18,6 +18,8 @@ import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
 
+import Index from "@/pages/Index";
+
 // 在.vue文件中要使用router-link或者router-view.需要注册下插件
 Vue.use(VueRouter);
 Vue.use(Vant);
@@ -34,7 +36,9 @@ const routes = [
     { path: "/personal", component: Personal},
     { path: "/edit_profile", component: EditProfile },
     { path: "/user_follow", component: UserFollow },
-    { path: "/user_comment", component: UserComment }
+    { path: "/user_comment", component: UserComment },
+
+    { path: "/", component: Index },
 ]
 
 // 路由：3.创建对象
