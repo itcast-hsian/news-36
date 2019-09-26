@@ -64,7 +64,7 @@ export default {
 
 <style scoped lang="less">
     .card{
-        padding: 20px 10px;
+        padding: 15px 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -78,7 +78,6 @@ export default {
             flex:1;
 
             .post-title{
-                font-size: 14px;
                 line-height: 1.5;
                 margin-bottom: 5px;
                 display: -webkit-box;
@@ -94,6 +93,7 @@ export default {
         }
 
         .card-img{
+            margin-left:5px;
             img{
                 display: block;
                 width: 120 / 360 * 100vw;
@@ -108,7 +108,6 @@ export default {
         border-bottom: 1px #ccc solid;
 
         .post-title{
-            font-size: 14px;
             line-height: 1.5;
             margin-bottom: 5px;
             display: -webkit-box;
@@ -141,7 +140,6 @@ export default {
         border-bottom: 1px #ccc solid;
 
         .post-title{
-            font-size: 14px;
             line-height: 1.5;
             margin-bottom: 5px;
             display: -webkit-box;
