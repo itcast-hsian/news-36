@@ -26,11 +26,21 @@
         :key="index"
         :title="item.name"
         >   
-            <!-- 文章模块组件，post是单篇文章详情 -->
-            <PostCard 
-            v-for="(item, index) in posts" 
-            :key="index"
-            :post="item"/>
+            <!-- v-model: 列表是否在加载 -->
+            <!-- finished: 是否加载完毕 -->
+            <!-- load: 到底部触发的事件 -->
+            <van-list
+                v-model="loading"
+                :finished="finished"
+                finished-text="没有更多了"
+                @load="onLoad"
+                >
+                <!-- 文章模块组件，post是单篇文章详情 -->
+                <PostCard 
+                v-for="(item, index) in posts" 
+                :key="index"
+                :post="item"/>
+            </van-list>
 
         </van-tab>
     </van-tabs>
@@ -52,9 +62,12 @@ export default {
             categories: [],
             // 栏目id
             cid: 999,
-
             // 默认的头条文章列表
-            posts: []
+            posts: [],
+            // 是否在加载,加载完毕后需要手动变为false
+            loading: false,
+            // 是否有更多数据，如果加载完所有的数据，改为true
+            finished: false
         }
     },
 
@@ -68,6 +81,18 @@ export default {
 
     components: {
         PostCard
+    },
+
+    methods: {
+        // 加载下一页的数据
+        onLoad(){
+            setTimeout(() => {
+                console.log("已经滚动到底部");
+
+                this.loading = false;
+                this.finished = true;
+            }, 2000)
+        }
     },
 
     mounted(){
