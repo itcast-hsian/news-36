@@ -79,4 +79,13 @@ export default {
             }
         }
     }
+
+    /deep/ .van-tabs__nav{
+        background:#f6f6f6;
+    }
+
+    /deep/ .van-tabs__line{
+        width:40px;
+        height:1px;
+    }
 </style>
