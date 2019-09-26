@@ -64,15 +64,16 @@ export default {
             categories: [],
             // 栏目id
             cid: 999,
+
             // 默认的头条文章列表
             posts: [],
             // 是否在加载,加载完毕后需要手动变为false
             loading: false,
             // 是否有更多数据，如果加载完所有的数据，改为true
             finished: false,
-
             // 分页的变量
             pageIndex: 1,
+
             // 每页加载条数这个值不用去修改
             pageSize: 5, 
         }
@@ -139,8 +140,21 @@ export default {
         this.$axios(config)
         .then(res => {
             const {data} = res.data;
+            const newData = [];
+
+            // 循环给栏目中每一项都添加四个独立的属性
+            data.forEach(v => {
+                v.posts = [];
+                v.loading = false;
+                v.finished = false;
+                v.pageIndex = 1;
+                newData.push(v);
+            })
+
             // 保存了栏目列表
-            this.categories = data;
+            this.categories = newData;
+
+            console.log(this.categories)
         });
 
         // 请求文章列表
