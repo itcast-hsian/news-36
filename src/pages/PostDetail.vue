@@ -2,7 +2,7 @@
   <div class="container">
       
     <!-- 文章的详情页的内容 -->
-    <div class="article">
+    <div class="article" v-if="detail.type === 1">
 
         <div class="header">
             <div class="header-left" @click="$router.back()">
@@ -20,6 +20,27 @@
         <div class="post-content" v-html="detail.content"></div>
     </div>
 
+    <!-- 视频详情的内容 -->
+    <div class="video-wrap" v-if="detail.type === 2">
+        <video 
+        src="https://video.pearvideo.com/mp4/adshort/20190927/cont-1607446-14434032_adpkg-ad_hd.mp4"
+        class="video"
+        controls
+        poster="https://timgmb04.bdimg.com/timg?searchbox_feed&quality=100&wh_rate=0&size=b576_324&ref=http%3A%2F%2Fwww.baidu.com&sec=1568739067&di=612dd27cae470b93b01a4b32ef72fbac&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fe18c6ffa079441431f8988ca4c3ac106.jpeg"
+        ></video>
+
+        <div class="video-info">
+            <div class="video-user">
+                <img :src="$axios.defaults.baseURL + detail.user.head_img" >
+                <span>{{detail.user.nickname}}</span>
+            </div>
+
+            <span class="focus" v-if="!detail.has_follow" @click="handleFollow">关注</span>
+            <span class="focus focus_active" v-else @click="handleUnfollow">已关注</span>
+        </div>
+    </div>
+
+    <!-- 按钮列表 -->
     <div class="post-btns">
         <!-- 点赞 -->
         <span 
@@ -186,6 +207,50 @@ export default {
     padding-bottom: 100 / 360 * 100vw;
 }
 
+.video{
+    width: 100%;
+
+}
+
+.video-info{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .video-user{
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color:#999;
+    }
+
+    img{
+        width:18px;
+        height:18px;
+        border-radius: 50%;
+        margin-right:10px;
+    }
+}
+
+.focus{
+    width:62 / 360 * 100vw;
+    height: 26 / 360 * 100vw;
+    line-height: 26 / 360 * 100vw;
+    text-align: center;
+    font-size:12px;
+    background:red;
+    color:#fff;
+    border-radius: 100px;
+    border: 1px red solid;
+}
+
+.focus_active{
+    border: 1px #ccc solid;
+    color:#333;
+    background:none;
+}
+
 .article{
     padding:0 10px;
     padding-top:60 / 360 * 100vw;
@@ -211,23 +276,6 @@ export default {
 
         .iconnew{
             font-size:50px;    
-        }
-
-        .focus{
-            width:62 / 360 * 100vw;
-            height: 26 / 360 * 100vw;
-            line-height: 26 / 360 * 100vw;
-            text-align: center;
-            font-size:12px;
-            background:red;
-            color:#fff;
-            border-radius: 100px;
-        }
-
-        .focus_active{
-            border: 1px #ccc solid;
-            color:#333;
-            background:none;
         }
     }
 
