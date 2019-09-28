@@ -27,7 +27,7 @@
         :class="{ like_active: detail.has_like }
         ">
             <i class="iconfont icondianzan"></i>
-            112
+            {{detail.like_length}}
         </span>
         <span>
             <i class="iconfont iconweixin"></i>
@@ -115,8 +115,16 @@ export default {
                 if(message === "点赞成功"){
                     // 修改关注的按钮的状态
                     this.detail.has_like = true;
-                    this.$toast.success(message)
+                    this.detail.like_length++;
                 }
+
+                if(message === "取消成功"){
+                    // 修改关注的按钮的状态
+                    this.detail.has_like = false;
+                    this.detail.like_length--;
+                }
+
+                this.$toast.success(message);
             })
         },
 
@@ -135,8 +143,14 @@ export default {
                 if(message === "收藏成功"){
                     // 修改关注的按钮的状态
                     this.detail.has_star = true;
-                    this.$toast.success(message)
                 }
+
+                if(message === "取消成功"){
+                    // 修改关注的按钮的状态
+                    this.detail.has_star = false;
+                }
+
+                this.$toast.success(message);
             })
         }
     },
@@ -174,12 +188,20 @@ export default {
 
 .article{
     padding:0 10px;
+    padding-top:60 / 360 * 100vw;
 
     .header{
+        position: fixed;
+        top:0;
+        left:0;
+        width: 100%;
         height:60 / 360 * 100vw;
+        padding:0 10px;
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background:#fff;
 
         .header-left{
             *{
