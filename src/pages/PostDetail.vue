@@ -36,7 +36,7 @@
     </div>
 
     <!-- 页脚组件 -->
-    <PostFooter/>
+    <PostFooter :post="detail" @handleStar="handleStar"/>
   </div>
 </template>
 
@@ -114,7 +114,27 @@ export default {
 
                 if(message === "点赞成功"){
                     // 修改关注的按钮的状态
-                    this.detail.has_like = false;
+                    this.detail.has_like = true;
+                    this.$toast.success(message)
+                }
+            })
+        },
+
+        // 点赞
+        handleStar(){
+            // 通过作者id关注用户
+            this.$axios({
+                url: "/post_star/" + this.detail.id,
+                // 添加头信息
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }).then(res => {
+                const {message} = res.data;
+
+                if(message === "收藏成功"){
+                    // 修改关注的按钮的状态
+                    this.detail.has_star = true;
                     this.$toast.success(message)
                 }
             })
