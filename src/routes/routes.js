@@ -5,8 +5,8 @@ import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
-import Index from "@/pages/index/Index";
 
+import Index from "@/pages/index/Index.vue";
 import Comment from "@/pages/comment/Index.vue";
 
 // 路由：2.创建路由配置

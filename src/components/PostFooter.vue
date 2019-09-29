@@ -34,7 +34,7 @@
             rows="3" 
             ref="textarea" 
             v-model="value" 
-            @blur="isFocus = false" 
+            @blur="handleBlur" 
             :autofocus="isFocus">
             </textarea>
             <span @click="handleSubmit">发送</span>
@@ -60,6 +60,13 @@ export default {
         // 获得焦点时候触发
         handleFocus(){
             this.isFocus = true;
+        },
+
+        // 输入框失去焦点时候触发
+        handleBlur(){
+            if(!this.value){
+                this.isFocus = false;
+            }
         },
 
         // 发布评论
@@ -88,6 +95,12 @@ export default {
 
                     // 隐藏输入框
                     this.isFocus = false;
+
+                    // 清空输入框的值
+                    this.value = "";
+                    
+                    // 滚动到底部
+                    window.scrollTo(0, document.body.offsetHeight);
                 }
             })
         }
