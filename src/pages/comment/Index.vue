@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <!-- 头部组件 -->
     <HeaderNormal title="精彩跟帖"/>
 
@@ -33,7 +33,7 @@
     </div>
 
     <!-- 页脚组件 -->
-    <PostFooter :post="detail"/>
+    <PostFooter :post="detail" @getComments="getComments"/>
   </div>
 </template>
 
