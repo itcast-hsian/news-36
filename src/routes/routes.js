@@ -7,6 +7,8 @@ import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
 import Index from "@/pages/index/Index";
 
+import Comment from "@/pages/comment/Index.vue";
+
 // 路由：2.创建路由配置
 const routes = [
     { path: "/login", component: Login},
@@ -17,7 +19,9 @@ const routes = [
     { path: "/user_comment", component: UserComment },
 
     { path: "/", component: Index },
+    // :id文章的id
     { path: "/post_detail/:id", component: PostDetail },
+    { path: "/post_comment/:id", component: Comment },
 ];
 
 export default routes;

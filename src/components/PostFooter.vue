@@ -4,7 +4,17 @@
         <div class="footer" v-show="!isFocus">
             <input type="text" placeholder="写跟帖" @focus="handleFocus">
             
-            <span class="comment">
+            <!-- 跳转到评论页面 -->
+            <!-- <router-link :to="`/post_comment/${post.id}`">
+                <span class="comment">
+                    <em>{{post.comment_length}}</em>
+                    <i class="iconfont iconpinglun-"></i>
+                </span>
+            </router-link> -->
+
+            <!-- 用事件的方式跳转并且带上参数 -->
+            <span class="comment" 
+            @click="$router.push(`/post_comment/${post.id}`)">
                 <em>{{post.comment_length}}</em>
                 <i class="iconfont iconpinglun-"></i>
             </span>
