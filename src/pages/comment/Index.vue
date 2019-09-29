@@ -39,6 +39,7 @@
     <PostFooter 
     :post="detail" 
     :replyComment="replyComment" 
+    @handleReply="handleReply"
     @getComments="getComments"/>
   </div>
 </template>
