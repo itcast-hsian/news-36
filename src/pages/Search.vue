@@ -4,17 +4,54 @@
           <span class="iconfont iconjiantou2" @click="$router.back()"></span>
           <div class="input-wrap">
               <span class="iconfont iconsearch"></span>
-              <input type="text" >
+              <input type="text" v-model="keyword" placeholder="搜索关键字">
           </div>
           
-          <span class="search-btn">搜索</span>
+          <span class="search-btn" @click="handleSearch">搜索</span>
+      </div>
+
+      <div class="list">
+          <!-- 调用首页用过的文章模块的组件 -->
+          <PostCard 
+          v-for="(item, index) in list"
+          :key="index"
+          :post="item"/>
       </div>
   </div>
 </template>
 
 <script>
-export default {
 
+// 文章列表模块的组件
+import PostCard from "@/components/PostCard";
+
+export default {
+    data(){
+        return {
+            // 搜索的关键字
+            keyword: "",
+            // 文章的列表
+            list: []
+        }
+    },
+
+    components: {
+        PostCard
+    },
+
+    methods: {
+        // 处理搜索
+        handleSearch(){
+            this.$axios({
+                url: `/post_search?keyword=${this.keyword}`
+            }).then(res => {
+               const {data} = res.data;
+
+               // 赋值给list
+               this.list = data;
+            })
+        }
+    }
 }
 </script>
 
