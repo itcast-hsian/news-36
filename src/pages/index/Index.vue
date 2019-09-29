@@ -5,10 +5,12 @@
       <div class="header">
           <span class="iconfont iconnew logo"></span>
 
-          <div class="header-search">
-              <span class="iconfont iconsearch"></span>
-              <i>搜索新闻</i>
-          </div>
+          <router-link to="/search" class="link-search">
+            <div class="header-search">
+                <span class="iconfont iconsearch"></span>
+                <i>搜索新闻</i>
+            </div>
+          </router-link>
           
           <router-link to="/personal">
             <span class="iconfont iconwode personal"></span>

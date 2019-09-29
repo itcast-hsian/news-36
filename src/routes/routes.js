@@ -5,6 +5,7 @@ import EditProfile from "@/pages/EditProfile";
 import UserFollow from "@/pages/UserFollow";
 import UserComment from "@/pages/UserComment";
 import PostDetail from "@/pages/PostDetail";
+import Search from "@/pages/Search";
 
 import Index from "@/pages/index/Index.vue";
 import Comment from "@/pages/comment/Index.vue";
@@ -22,6 +23,8 @@ const routes = [
     // :id文章的id
     { path: "/post_detail/:id", component: PostDetail },
     { path: "/post_comment/:id", component: Comment },
+
+    { path: "/search", component: Search },
 ];
 
 export default routes;
