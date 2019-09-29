@@ -1,14 +1,18 @@
 <template>
   <div>
       <!-- 自己再次在这个位置调用了自己 -->
-      <comment v-if="data.parent" :data="data.parent"></comment>
+      <comment 
+      v-if="data.parent" 
+      :data="data.parent"
+      @handleReply="handleReply">
+      </comment>
       
       <!-- 评论楼层 -->
       <div class="comment-floor">
         <div class="floor-header">
           <span>{{data.user.nickname}}</span>
           <i>2小时前</i>
-          <em>回复</em>
+          <em @click="handleReply">回复</em>
         </div>
 
         <div class="comment-content">
@@ -23,6 +27,12 @@ export default {
     // 组件的名字，单纯的针对当前的组件命名，当前的组件可以通过该名字自己调用自己
     name: "comment",
     props: ["data"],
+
+    methods: {
+      handleReply(){
+        this.$emit("handleReply", this.data);
+      }
+    }
 }
 </script>
 

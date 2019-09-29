@@ -12,7 +12,13 @@ export default {
             // 文章的详情
             detail: {},
             // 保存点击回复的评论
-            replyComment: null
+            replyComment: null,
+
+            // 分页的参数
+            loading: false,
+            finished: false,
+            pageIndex: 1,
+            pageSize: 10
         }
     },
     // 注册组件
@@ -24,14 +30,34 @@ export default {
 
     methods: {
          // 请求评论的列表
-        getComments(id){
+        getComments(id, isReply){
+
+            // 如果评论发布成功，初始化分页的数据和列表数据
+            if(isReply === "isReply"){
+                this.pageIndex = 1;
+                this.comments = []
+            }
+
             // 请求文章评论
             this.$axios({
-                url: "/post_comment/" + id,
+                // 条数默认是10
+                url: `/post_comment/${id}?pageIndex=${this.pageIndex}`,
             }).then(res => {
                 const {data} = res.data;
+                // 覆盖评论的列表
+                this.comments = [...this.comments, ...data];
+                
+                // 请求完毕需要手动变为false
+                this.loading = false;
 
-                this.comments = data;
+                if(data.length < this.pageSize){
+                    this.finished = true;
+                    return;
+                }
+                
+                // 页数加1
+                this.pageIndex++;
+                
             });
         },
 
@@ -40,6 +66,16 @@ export default {
             // 获取到当前要回复的id
             this.replyComment = item;
         },
+
+        // 评论加载更多
+        onLoad(){
+            setTimeout(() => {
+                // 文章的id
+                const {id} = this.$route.params;
+                // 请求下一页的数据
+                this.getComments(id);
+            }, 2000)
+        }
     },
 
     mounted(){
