@@ -46,6 +46,15 @@
                 :post="item"/>
             </van-list>
 
+            <!-- 加载中的图标 -->
+            <van-loading 
+            v-if="item.posts.length === 0 && !item.finished"
+            size="24px" 
+            style='margin-top:20px;'
+            vertical 
+            type="spinner" 
+            color="#1989fa">加载中...</van-loading>
+
         </van-tab>
     </van-tabs>
 
