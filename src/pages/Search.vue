@@ -26,6 +26,7 @@
 import PostCard from "@/components/PostCard";
 
 export default {
+    name: "search",
     data(){
         return {
             // 搜索的关键字
