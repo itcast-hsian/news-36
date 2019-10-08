@@ -47,11 +47,7 @@ export default {
         // 加载下一页的数据
         onLoad(){
             setTimeout(() => {
-                console.log("已经滚动到底部");
-                
                 const category = this.categories[this.active];
-
-                console.log(category)
 
                 // 请求文章列表
                 this.$axios({
