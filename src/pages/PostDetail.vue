@@ -23,10 +23,10 @@
     <!-- 视频详情的内容 -->
     <div class="video-wrap" v-if="detail.type === 2">
         <video 
-        src="https://video.pearvideo.com/mp4/adshort/20190927/cont-1607446-14434032_adpkg-ad_hd.mp4"
+        :src="detail.content"
         class="video"
         controls
-        poster="https://timgmb04.bdimg.com/timg?searchbox_feed&quality=100&wh_rate=0&size=b576_324&ref=http%3A%2F%2Fwww.baidu.com&sec=1568739067&di=612dd27cae470b93b01a4b32ef72fbac&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2Fe18c6ffa079441431f8988ca4c3ac106.jpeg"
+        :poster="$axios.defaults.baseURL + detail.cover[0].url"
         ></video>
 
         <div class="video-info">
@@ -36,8 +36,10 @@
             </div>
 
             <span class="focus" v-if="!detail.has_follow" @click="handleFollow">关注</span>
-            <span class="focus focus_active" v-else @click="handleUnfollow">已关注</span>
+            <span class="focus focus_active" v-else @click="handleUnfollow">已关注</span>          
         </div>
+
+        <h3 style="padding:0 10px">{{ detail.title }}</h3>
     </div>
 
     <!-- 按钮列表 -->
