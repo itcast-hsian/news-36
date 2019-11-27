@@ -49,12 +49,21 @@ export default {
             setTimeout(() => {
                 const category = this.categories[this.active];
 
-                // 请求文章列表
-                this.$axios({
+                const config = {
                     url: `/post?category=${this.cid}
                     &pageIndex=${category.pageIndex}
                     &pageSize=${this.pageSize}`
-                }).then(res => {
+                }
+        
+                // 是否存在token，如果有就给头部加上token验证
+                if(localStorage.getItem("token")){
+                    config.headers = {
+                         Authorization: localStorage.getItem("token")
+                    }
+                }
+
+                // 请求文章列表
+                this.$axios(config).then(res => {
                     const {data} = res.data;
 
                     // 没有更多的数据了
